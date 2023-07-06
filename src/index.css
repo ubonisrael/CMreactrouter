@@ -1,3 +1,21 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer utilities {
+  /* Hide the default scrollbar */
+  .scrollbar::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+
+  /* Track */
+  .scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Handle */
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: #0e3555;
+    border-radius: 0.25rem;
+  }
+}

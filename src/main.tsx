@@ -9,6 +9,11 @@ import Index from "./routes/index.tsx";
 import AddContact from "./routes/addcontact.tsx";
 import { loader as rootLoader } from './components/contactlist.tsx'
 import { action as addAction } from './routes/addcontact.tsx'
+import { loader as editLoader, action as editAction } from './routes/editcontact.tsx'
+import { loader as contactLoader, action as contactAction } from './routes/contact.tsx'
+import { action as deleteAction} from './routes/delete.tsx'
+import ContactPage from "./routes/contact.tsx";
+import EditContact from "./routes/editcontact.tsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +30,22 @@ const router = createBrowserRouter([
             path: '/add/',
             element: <AddContact />,
             action: addAction
+          },
+          {
+            path: '/contacts/:contactId',
+            element: <ContactPage />,
+            loader: contactLoader,
+            action: contactAction
+          },
+          {
+            path: '/contacts/:contactId/edit',
+            element: <EditContact />,
+            loader: editLoader,
+            action: editAction,
+          },
+          {
+            path: '/contacts/:contactId/delete',
+            action: deleteAction,
           }
         ]
       }
