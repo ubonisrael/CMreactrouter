@@ -1,8 +1,8 @@
-import { Params } from "../@types/app";
 import { deleteContact } from "../lib/contacts";
-import { redirect } from "react-router-dom";
+import { ActionFunction, redirect } from "react-router-dom";
 
-export async function action({params}: {params: Params}) {
+export const action: ActionFunction = async({params}) => {
+    if (!params.contactId) return
     await deleteContact(params.contactId)
     return redirect("/");
 }

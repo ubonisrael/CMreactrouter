@@ -14,6 +14,7 @@ const ContactForm = ({ contact }: editForm) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    //once the image has been loaded remove the progress number and bar
     setProgress(0)
   }, [avatar])
 

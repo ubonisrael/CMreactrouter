@@ -9,14 +9,14 @@ export default function Root() {
   const handleToggleMenu = () => setToggle((prev) => !prev);
 
   return (
-    <div className="w-screen bg-blue-50 dark:bg-black">
-      <Header handleToggle={handleToggleMenu} />
+      <>
+      <Header handleToggle={handleToggleMenu} toggled={toggleMenu} />
       <main className="w-full h-[calc(100vh-56px)] md:h-[calc(100vh-64px)] sm:flex sm:items-center sm:justify-center sm:gap-2 md:gap-4 lg:gap-8 p-4 sm:p-2 md:p-6">
         <SideBar toggled={toggleMenu} handleToggle={handleToggleMenu} />
         <section className="h-full overflow-y-scroll scrollbar p-2 transition-all ease-linear duration-300 rounded-md sm:p-4 sm:grow sm:rounded-xl max-w-2xl bg-slate-200 dark:bg-slate-900">
           <Outlet />
         </section>
       </main>
-    </div>
+      </>
   );
 }

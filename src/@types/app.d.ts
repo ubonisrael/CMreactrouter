@@ -15,10 +15,11 @@ export interface Contact {
 
 export interface Contacts extends Array<Contact> {}
 
-export interface Params {
-  [k: string]: string
-}
-
 export interface editForm {
   contact?: Contact;
+}
+
+interface handleToggle {
+  toggled: boolean;
+  handleToggle: () => void;
 }

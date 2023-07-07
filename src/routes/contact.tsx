@@ -1,13 +1,13 @@
-import { Form, useLoaderData } from "react-router-dom";
-import { Contact, Params } from "../@types/app";
+import { ActionFunction, Form, LoaderFunction, useLoaderData } from "react-router-dom";
+import { Contact } from "../@types/app";
 import { getContact, updateContact } from "../lib/contacts";
 import { formFields } from "../lib/formfields";
 import { FaUserCircle } from "react-icons/fa";
 import NavigateButtons from "../components/navigatebuttons";
 import Favorite from "../components/favoritebtn";
 
-export async function loader({ params }: { params: Params }) {
-  const contact = await getContact(params.contactId);
+export const loader: LoaderFunction = async({ params }) => {
+  const contact = params.contactId ? await getContact(params.contactId) : '';
   if (!contact) {
     throw new Response("", {
       status: 404,
@@ -17,15 +17,14 @@ export async function loader({ params }: { params: Params }) {
   return { contact };
 }
 
-export async function action({params, request}: {params: Params, request: Request}) {
+export const action: ActionFunction = async({params, request}) => {
   let formData = await request.formData()
+  if (!params.contactId) return
   return updateContact(params.contactId, { favorite: `${formData.get('favorite') === 'true'}`})
 }
 
 const ContactPage = () => {
   const { contact } = useLoaderData() as { contact: Contact };
-  console.log(contact);
-  
  
   return (
     <section className="max-w-sm m-auto flex flex-col md:max-w-lg lg:max-w-2xl md:flex-row md:flex-wrap gap-2 lg:gap-4 items-start justify-center sm:justify-start">

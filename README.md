@@ -8,7 +8,7 @@ A CRUD web app built with ReactTS that allows users to add, edit, store and dele
 - [Overview](#overview)
   - [Summary](#summary)
   - [Features](#features)
-  <!-- - [Links](#links) -->
+  - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [Project, Purpose and Goal](#project-purpose-and-goal)
@@ -31,10 +31,9 @@ A CRUD web app built with ReactJS that allows users to add, edit, store and dele
 
 Users can add, edit, delete and search for contacts.
 
-<!-- ### Links
+### Links
 
-- Solution URL: [https://github.com/ubonisrael/ecommerceproduct](https://github.com/ubonisrael/ecommerceproduct) -->
-<!-- - Live Site URL: [https://ecommerceproduct-ubonisrael.vercel.app/](https://ecommerceproduct-ubonisrael.vercel.app/) -->
+- Solution URL: [https://github.com/ubonisrael/CMreactrouter](https://github.com/ubonisrael/CMreactrouter)
 
 ## My process
 
@@ -96,12 +95,11 @@ yarn dev
 
 ### Useful resources
 
-- [https://www.typescriptlang.org/](https://www.typescriptlang.org/) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
 - [https://tailwindcss.com/](https://tailwindcss.com/) - This helped me for understand the theory behind the framework and the approach towards CSS design using Atomic CSS. It also provided great guides on how to implement certain designs.
 - [https://tailwindcomponents.com/cheatsheet/](https://tailwindcomponents.com/cheatsheet/) - This provided an easy access to tailwind classes.
 - [https://reactrouter.com/en/main](https://reactrouter.com/en/main) - This provided a great tutorial on how to use react router to build a react web app.
 
 ## Author
 
-- Frontend Mentor - [@ubonisrael](https://www.frontendmentor.io/profile/uboinisrael)
+- Frontend Mentor - [@ubonisrael](https://www.frontendmentor.io/profile/ubonisrael)
 - Twitter - [@jakpanudoh](https://www.twitter.com/jakpanudoh)

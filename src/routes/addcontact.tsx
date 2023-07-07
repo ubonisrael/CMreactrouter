@@ -1,9 +1,9 @@
-import { redirect } from "react-router-dom";
+import { ActionFunction, redirect } from "react-router-dom";
 import { randomId } from "../lib/randomId";
 import { createContact } from "../lib/contacts";
 import ContactForm from "../components/contactform";
 
-export async function action({ request }: { request: Request }) {
+export const action: ActionFunction = async({ request }) => {
   const formData = await request.formData();
   const contact = Object.fromEntries(formData);
   contact.ID = `${contact.firstname}${randomId()}`;
@@ -11,11 +11,6 @@ export async function action({ request }: { request: Request }) {
   return redirect("/");
 }
 
-const AddContact = () => {
-
-  return (
-      <ContactForm />
-  );
-};
+const AddContact = () => <ContactForm />
 
 export default AddContact;
