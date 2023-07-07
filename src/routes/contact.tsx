@@ -38,7 +38,7 @@ const ContactPage = () => {
             className="w-20 h-20 md:w-36 md:h-36 lg:w-44 lg:h-48 dark:border-2 dark:border-solid dark:border-gray-400 rounded-full"
           />
         ) : (
-          <span className="text-7xl md:text-9xl dark:text-white">
+          <span aria-label="Default user avatar" className="text-7xl md:text-9xl dark:text-white">
             <FaUserCircle />
           </span>
         )}
@@ -58,12 +58,16 @@ const ContactPage = () => {
         <div 
       className="w-full pt-2 flex items-center justify-evenly md:px-4 md:justify-end md:gap-4 dark:text-white">
           <Form action="edit">
-            <button className="w-28 p-1 bg-white rounded-md dark:bg-slate-700 dark:text-white hover:text-gray-100 hover:bg-slate-700 dark:hover:bg-slate-100 dark:hover:text-gray-900">
+            <button
+            aria-label="Edit contact"
+             className="w-28 p-1 bg-white rounded-md dark:bg-slate-700 dark:text-white hover:text-gray-100 hover:bg-slate-700 dark:hover:bg-slate-100 dark:hover:text-gray-900">
               Edit
             </button>
           </Form>
           <Form method="post" action="delete">
-            <button className="w-28 p-1 bg-white rounded-md dark:bg-slate-700 dark:text-white hover:text-gray-100 hover:bg-slate-700 dark:hover:bg-slate-100 dark:hover:text-gray-900">
+            <button 
+          aria-label="Delete contact"
+            className="w-28 p-1 bg-white rounded-md dark:bg-slate-700 dark:text-white hover:text-gray-100 hover:bg-slate-700 dark:hover:bg-slate-100 dark:hover:text-gray-900">
               Delete
             </button>
           </Form>

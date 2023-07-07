@@ -60,7 +60,7 @@ const ContactForm = ({ contact }: editForm) => {
             className="w-20 h-20 md:w-36 md:h-36 lg:w-44 lg:h-48 dark:border-2 dark:border-solid dark:border-gray-400 rounded-xl md:rounded-3xl"
           />
         ) : (
-          <span className="text-7xl md:text-9xl  dark:text-white">
+          <span aria-label="Default user avatar" className="text-7xl md:text-9xl  dark:text-white">
             <FaUserCircle />
           </span>
         )}
@@ -133,12 +133,14 @@ const ContactForm = ({ contact }: editForm) => {
       <div 
       className="w-full pt-2 flex items-center justify-evenly md:px-4 md:justify-end md:gap-4 dark:text-white">
         <button
+        aria-label={`${contact ? "Update" : "Add"} contact`}
           className="w-28 p-1 bg-white rounded-md dark:bg-slate-700 dark:text-white hover:text-gray-100 hover:bg-slate-700 dark:hover:bg-slate-100 dark:hover:text-gray-900"
           type="submit"
         >
           {contact ? "Update" : "Add"} Contact
         </button>
         <button
+        aria-label="Cancel"
           className="w-28 p-1 bg-white rounded-md dark:bg-slate-700 dark:text-white hover:text-gray-100 hover:bg-slate-700 dark:hover:bg-slate-100 dark:hover:text-gray-900"
           type="button"
           onClick={(event) => {
