@@ -4,16 +4,18 @@ import Header from "../components/header";
 import SideBar from "../components/sidebar";
 
 export default function Root() {
-  const [toggleMenu, setToggle] = useState(true);
+  const [toggleMenu, setToggle] = useState(false);
 
-  const handleToggleMenu = () => setToggle((prev) => !prev);
+  const handleOpenMenu = () => setToggle(true);
+  const handleCloseMenu = () => setToggle(false);
 
   return (
       <>
-      <Header handleToggle={handleToggleMenu} toggled={toggleMenu} />
-      <main className="w-full h-[calc(100vh-56px)] md:h-[calc(100vh-64px)] bg-blue-50 dark:bg-black sm:flex sm:items-center sm:justify-center sm:gap-2 md:gap-4 lg:gap-8 p-4 sm:p-2 md:p-6">
-        <SideBar toggled={toggleMenu} handleToggle={handleToggleMenu} />
-        <section className="h-full overflow-y-scroll scrollbar p-2 transition-all ease-linear duration-300 rounded-md sm:p-4 sm:grow sm:rounded-xl max-w-2xl bg-slate-200 dark:bg-slate-900">
+      <Header handleOpenMenu={handleOpenMenu} handleCloseMenu={handleCloseMenu} toggled={toggleMenu} />
+      <main className="relative w-full h-[calc(100vh-56px)] md:h-[calc(100vh-90px)] dark:bg-black sm:flex">
+        <SideBar closeMenu={handleCloseMenu} toggled={toggleMenu} />
+        <div className="hidden w-[1px] h-full bg-black/25  dark:bg-white/50 sm:block"></div>
+        <section className="w-full sm:w-[calc(100vw-256px)] md:w-[calc(100vw-288px)] h-full transition-all ease-linear duration-300">
           <Outlet />
         </section>
       </main>

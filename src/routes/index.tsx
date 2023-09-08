@@ -1,11 +1,5 @@
-import AddBtn from "../components/addbtn";
+import ContactList from "../components/contact_list";
 
-const Index = () => {
-  return (
-      <section className="w-full h-full">
-        <AddBtn />
-      </section>
-  )
-};
+const Index = () => <ContactList />
 
 export default Index;

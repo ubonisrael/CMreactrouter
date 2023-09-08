@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import { Form, useNavigate } from "react-router-dom";
+import { Form } from "react-router-dom";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../firebase";
 import { FaUserCircle } from "react-icons/fa";
 import { randomId } from "../lib/randomId";
 import { formFields } from "../lib/formfields";
 import { editForm } from "../@types/app";
-import NavigateButtons from "./navigatebuttons";
+import NavigateButtons from "./navigate_buttons";
+import CancelAlert from "./cancel_alert";
+import { Button } from "@radix-ui/themes";
 
 const ContactForm = ({ contact }: editForm) => {
   const [avatar, setAvatar] = useState("");
   const [progress, setProgress] = useState(0);
-  const navigate = useNavigate();
 
   useEffect(() => {
     //once the image has been loaded remove the progress number and bar
@@ -46,12 +47,13 @@ const ContactForm = ({ contact }: editForm) => {
   };
 
   return (
-    <Form
-      method="post"
-       className="max-w-sm m-auto flex flex-col md:max-w-lg lg:max-w-2xl md:flex-row md:flex-wrap gap-2 lg:gap-4 items-start justify-center sm:justify-start"  
-    >
+    <section className="w-full h-full bg-slate-50 dark:text-white dark:bg-slate-900">
       <NavigateButtons />
-      <h2 className="w-full text-center dark:text-white uppercase py-1">{contact ? "Edit" : "New"} Contact</h2>
+      <Form
+      method="post"
+       className="w-full max-w-3xl mx-auto h-[calc(100%-72px)] flex flex-col md:flex-row md:flex-wrap p-2 gap-2 lg:gap-4 items-start justify-start"  
+    >
+      <h2 className="w-full text-center text-xl sm:text-2xl md:text-3xl dark:text-white uppercase font-bold py-1">{contact ? "Edit" : "New"} Contact</h2>
       <div className="w-full flex flex-col gap-1 items-center justify-center">
         {avatar || (contact && contact.avatarURL) ? (
           <img
@@ -68,7 +70,7 @@ const ContactForm = ({ contact }: editForm) => {
         <span className={`${progress == 0 ? 'hidden' : 'inline-block'} h-1 bg-blue-800`} style={{width: `${1.44 * progress}px`}}></span>
         <label
           htmlFor="avatar"
-          className="p-2 text-xs bg-slate-900 hover:bg-slate-100 dark:bg-slate-100 dark:hover:bg-slate-700 text-white hover:text-slate-900 dark:text-slate-900 dark:hover:text-white cursor-pointer rounded-lg"
+          className="p-2 text-xs bg-slate-900 hover:bg-slate-400 dark:bg-slate-100 dark:hover:bg-slate-700 text-white hover:text-slate-900 dark:text-slate-900 dark:hover:text-white cursor-pointer rounded-lg"
         >
           {contact ? "Update" : "Upload"} Contact Image
         </label>
@@ -131,33 +133,14 @@ const ContactForm = ({ contact }: editForm) => {
       })}
       </div>
       <div 
-      className="w-full pt-2 flex items-center justify-evenly md:px-4 md:justify-end md:gap-4 dark:text-white">
-        <button
-        aria-label={`${contact ? "Update" : "Add"} contact`}
-          className="w-28 p-1 bg-white rounded-md dark:bg-slate-700 dark:text-white hover:text-gray-100 hover:bg-slate-700 dark:hover:bg-slate-100 dark:hover:text-gray-900"
-          type="submit"
-        >
-          {contact ? "Update" : "Add"} Contact
-        </button>
-        <button
-        aria-label="Cancel"
-          className="w-28 p-1 bg-white rounded-md dark:bg-slate-700 dark:text-white hover:text-gray-100 hover:bg-slate-700 dark:hover:bg-slate-100 dark:hover:text-gray-900"
-          type="button"
-          onClick={(event) => {
-            if (
-              confirm(
-                "Are you sure you want to cancel? Changes will not be saved!"
-              )
-            ) {
-              event.preventDefault();
-              navigate(-1);
-            }
-          }}
-        >
-          Cancel
-        </button>
+      className="w-full flex items-center justify-evenly md:px-4 md:justify-end md:gap-4 dark:text-white">
+        <Button aria-label={`${contact ? "Update" : "Add"} contact`} type="submit">
+        {contact ? "Update" : "Add"} Contact
+        </Button>
+        <CancelAlert />
       </div>
     </Form>
+    </section>
   );
 };
 

@@ -1,15 +1,17 @@
-import { NavLink } from 'react-router-dom'
-import { BsPersonFillAdd } from "react-icons/bs";
+import { AiOutlineUserAdd } from "react-icons/ai";
+import { NavLink } from "react-router-dom";
 
-const AddBtn = () => {
+const AddContactBtn = ({onClick}: {onClick: () => void}) => {
   return (
     <NavLink to={`/add/`}>
-      <div className="w-32 h-36 flex flex-col items-center justify-center text-3xl rounded-2xl bg-white cursor-pointer dark:bg-slate-800 dark:text-white hover:text-slate-100 hover:bg-slate-700 dark:hover:bg-slate-100 dark:hover:text-slate-800">
-        <BsPersonFillAdd />
-        <p className="text-sm">add contact</p>
+      <div onClick={onClick}>
+        <button className="w-full flex items-center justify-center gap-2 text-lg border border-slate-800 rounded shadow py-2 hover:bg-slate-900 hover:text-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700">
+          <AiOutlineUserAdd />
+          <span>Create Contact</span>
+        </button>
       </div>
-      </NavLink>
-  )
-}
+    </NavLink>
+  );
+};
 
-export default AddBtn
+export default AddContactBtn;

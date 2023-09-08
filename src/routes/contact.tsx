@@ -1,77 +1,78 @@
-import { ActionFunction, Form, LoaderFunction, useLoaderData } from "react-router-dom";
+import {
+  Form,
+  useLoaderData,
+} from "react-router-dom";
 import { Contact } from "../@types/app";
-import { getContact, updateContact } from "../lib/contacts";
-import { formFields } from "../lib/formfields";
-import { FaUserCircle } from "react-icons/fa";
-import NavigateButtons from "../components/navigatebuttons";
-import Favorite from "../components/favoritebtn";
-
-export const loader: LoaderFunction = async({ params }) => {
-  const contact = params.contactId ? await getContact(params.contactId) : '';
-  if (!contact) {
-    throw new Response("", {
-      status: 404,
-      statusText: "Contact Not Found",
-    });
-  }
-  return { contact };
-}
-
-export const action: ActionFunction = async({params, request}) => {
-  let formData = await request.formData()
-  if (!params.contactId) return
-  return updateContact(params.contactId, { favorite: `${formData.get('favorite') === 'true'}`})
-}
+import { FaPhoneAlt, FaUserCircle } from "react-icons/fa";
+import NavigateButtons from "../components/navigate_buttons";
+import Favorite from "../components/favorite_btn";
+import { Button } from "@radix-ui/themes";
+import { Pencil2Icon } from "@radix-ui/react-icons";
+import DeleteAlert from "../components/delete_alert";
+import { MdDescription, MdEmail } from "react-icons/md";
+import { AiFillHome } from "react-icons/ai";
 
 const ContactPage = () => {
   const { contact } = useLoaderData() as { contact: Contact };
- 
+
   return (
-    <section className="max-w-sm m-auto flex flex-col md:max-w-lg lg:max-w-2xl md:flex-row md:flex-wrap gap-2 lg:gap-4 items-start justify-center sm:justify-start">
+    <section className="w-full h-full bg-slate-50 dark:text-white dark:bg-slate-900">
       <NavigateButtons />
-      <Favorite contact={contact} />
-      <div className="w-full flex flex-col gap-1 items-center justify-center">
-      {contact.avatarURL ? (
-          <img
-            src={`${contact.avatarURL}`}
-            alt="contact avatar"
-            className="w-20 h-20 md:w-36 md:h-36 lg:w-44 lg:h-48 dark:border-2 dark:border-solid dark:border-gray-400 rounded-full"
-          />
-        ) : (
-          <span aria-label="Default user avatar" className="text-7xl md:text-9xl dark:text-white">
-            <FaUserCircle />
-          </span>
-        )}
-      </div>
-      <div className="w-full md:grid md:grid-cols-2 md:gap-1">
-        {formFields.map(({ label, name }, index) => (
-          <div key={index} 
-          className="w-full md:max-w-[300px] mx-auto flex flex-col items-start justify-between"
-          >
-            <p className="dark:text-white">{label}</p>
-            <p className="dark:text-white w-full p-1 bg-white dark:bg-slate-800 rounded-md break-words shadow-md">{`${
-              contact[name] || "N/A"
-            }`}</p>
+      <section className="w-full max-w-5xl mx-auto h-[calc(100%-72px)] flex flex-col md:flex-row md:flex-wrap p-2 gap-2 lg:gap-4 items-start justify-start">
+        <div className="w-full grid gap-2 md:gap-4">
+          <div className="absolute top-0 right-0 lg:static w-full p-2 flex items-center justify-start gap-2 sm:gap-3">
+            <Favorite contact={contact} />
           </div>
-        ))}
+          <div className="relative w-full flex flex-col lg:flex-row-reverse gap-2 md:gap-3 items-center justify-center lg:justify-between">
+            <div className="absolute -bottom-44 sm:-bottom-52 md:-bottom-60 lg:static w-full lg:w-auto pt-2 flex items-center justify-evenly md:justify-end md:gap-4 dark:text-white">
+              <Form action="edit">
+                <Button>
+                  <Pencil2Icon /> Edit
+                </Button>
+              </Form>
+              <DeleteAlert />
+            </div>
+            <div className="grow flex flex-col items-start justify-between">
+              <p className="w-full p-1 break-words text-center lg:text-left text-xl sm:text-2xl md:text-4xl font-bold">{`${
+                contact.firstname || "N/A"
+              } ${contact.surname || contact.midname || ""}`}</p>
+            </div>
+            {contact.avatarURL ? (
+              <img
+                src={`${contact.avatarURL}`}
+                alt="contact avatar"
+                className="w-32 h-32 md:w-36 md:h-36 lg:w-44 lg:h-44 dark:border-2 dark:border-solid dark:border-gray-400 rounded-full"
+              />
+            ) : (
+              <span
+                aria-label="Default user avatar"
+                className="text-7xl md:text-9xl dark:text-white"
+              >
+                <FaUserCircle />
+              </span>
+            )}
+          </div>
+          <div className="w-full h-0.5 my-1 hidden sm:block bg-black dark:bg-white"></div>
+          <div className="dark:text-white w-full p-2 sm:p-3 md:p-4 bg-white dark:bg-slate-800 rounded-md break-words shadow-md">
+            <div className="flex items-center gap-1 sm:text-xl md:text-2xl">
+              <FaPhoneAlt />
+              <p className="font-bold">{`${contact.phone || "N/A"}`}</p>
+            </div>
+            <div className="flex items-center gap-1 sm:text-xl md:text-2xl">
+              <MdEmail />
+              <p className="font-bold">{`${contact.email || "N/A"}`}</p>
+            </div>
+            <div className="flex items-center gap-1 sm:text-xl md:text-2xl">
+              <AiFillHome />
+              <p className="font-bold">{`${contact.address || "N/A"}`}</p>
+            </div>
+            <div className="flex items-center gap-1 sm:text-xl md:text-2xl">
+              <MdDescription />
+              <p className="font-bold">{`${contact.desc || "N/A"}`}</p>
+            </div>
+          </div>
         </div>
-        <div 
-      className="w-full pt-2 flex items-center justify-evenly md:px-4 md:justify-end md:gap-4 dark:text-white">
-          <Form action="edit">
-            <button
-            aria-label="Edit contact"
-             className="w-28 p-1 bg-white rounded-md dark:bg-slate-700 dark:text-white hover:text-gray-100 hover:bg-slate-700 dark:hover:bg-slate-100 dark:hover:text-gray-900">
-              Edit
-            </button>
-          </Form>
-          <Form method="post" action="delete">
-            <button 
-          aria-label="Delete contact"
-            className="w-28 p-1 bg-white rounded-md dark:bg-slate-700 dark:text-white hover:text-gray-100 hover:bg-slate-700 dark:hover:bg-slate-100 dark:hover:text-gray-900">
-              Delete
-            </button>
-          </Form>
-        </div>
+      </section>
     </section>
   );
 };

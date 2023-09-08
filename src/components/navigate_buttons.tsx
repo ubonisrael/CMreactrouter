@@ -8,14 +8,14 @@ const NavigateButtons = () => {
     <div className="p-2 flex items-center justify-start gap-2 sm:gap-3 md:gap-4 md:w-full">
       <button
         type="button"
-        className="w-8 text-xl flex items-center justify-center p-2 bg-white rounded-md dark:bg-slate-700 dark:text-white hover:text-gray-100 hover:bg-slate-700 dark:hover:bg-slate-100 dark:hover:text-gray-900"
+        className="w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 text-xl md:text-2xl flex items-center justify-center p-2 bg-white rounded-md dark:bg-slate-700 dark:text-white hover:text-gray-100 hover:bg-slate-700 dark:hover:bg-slate-100 dark:hover:text-gray-900"
         onClick={() => navigate(-1)}
       >
         <FaBackward />
       </button>
       <button
         type="button"
-        className="w-8 text-xl flex items-center justify-center p-2 bg-white rounded-md dark:bg-slate-700 dark:text-white hover:text-gray-100 hover:bg-slate-700 dark:hover:bg-slate-100 dark:hover:text-gray-900"
+        className="w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 text-xl md:text-2xl flex items-center justify-center p-2 bg-white rounded-md dark:bg-slate-700 dark:text-white hover:text-gray-100 hover:bg-slate-700 dark:hover:bg-slate-100 dark:hover:text-gray-900"
         onClick={() => navigate("/")}
       >
         <AiFillHome />

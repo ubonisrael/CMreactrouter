@@ -8,7 +8,6 @@ A CRUD web app built with ReactTS that allows users to add, edit, store and dele
 - [Overview](#overview)
   - [Summary](#summary)
   - [Features](#features)
-  - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [Project, Purpose and Goal](#project-purpose-and-goal)
@@ -30,10 +29,6 @@ A CRUD web app built with ReactJS that allows users to add, edit, store and dele
 ### Features
 
 Users can add, edit, delete and search for contacts.
-
-### Links
-
-- Solution URL: [https://github.com/ubonisrael/CMreactrouter](https://github.com/ubonisrael/CMreactrouter)
 
 ## My process
 
@@ -66,8 +61,11 @@ I would love to continue exploring the frameworks used in this project and get m
 
 ### Future improvements
 
-- Allow users to delete multiple contact at once
+- ~~Allow users to delete multiple contact at once.~~
 - Add toasts to indicate when an action, e.g adding a contact has been successfully achieved.
+- Create Merge and Fix functionality.
+- Create a favorites page.
+- Allow users to be able to import contacts.
 
 ### Getting started
 
@@ -101,5 +99,5 @@ yarn dev
 
 ## Author
 
-- Frontend Mentor - [@ubonisrael](https://www.frontendmentor.io/profile/ubonisrael)
 - Twitter - [@jakpanudoh](https://www.twitter.com/jakpanudoh)
+- LinkedIn - [Ubonisrael Akpanudoh](www.linkedin.com/in/ubonisrael-akpanudoh)

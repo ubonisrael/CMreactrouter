@@ -21,5 +21,6 @@ export interface editForm {
 
 interface handleToggle {
   toggled: boolean;
-  handleToggle: () => void;
+  handleOpenMenu: () => void;
+  handleCloseMenu: () => void;
 }

@@ -45,3 +45,11 @@ export async function deleteContact(id: string) {
   const updatedContacts = contacts.filter((contact) => contact.ID !== id);
   return localStorage.setItem("contacts", JSON.stringify(updatedContacts));
 }
+
+// a function to delete multiple contacts
+export async function multiDeleteContacts(id: string) {
+  const contacts = await getContacts();
+  const idArray = id.split('+')
+  const updatedContacts = contacts.filter((contact) =>  !idArray.includes(`${contact.ID}`));
+  return localStorage.setItem("contacts", JSON.stringify(updatedContacts));
+}

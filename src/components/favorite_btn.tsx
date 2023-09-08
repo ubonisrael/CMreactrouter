@@ -11,7 +11,7 @@ const Favorite = ({contact}: {contact: Contact}) => {
     }
 
   return (
-    <fetcher.Form method="post" className="w-full px-8 flex items-center justify-end">
+    <fetcher.Form method="post" className="w-full flex items-center justify-end">
         <button
         name="favorite"
         value={favorite === 'true' ? "false" : "true"}
@@ -20,7 +20,7 @@ const Favorite = ({contact}: {contact: Contact}) => {
             ? "Remove from favorites"
             : "Add to favorites"
         }
-        className={`text-2xl sm:text-3xl ${favorite === 'true' ? 'text-yellow-300' : 'dark:text-white'}`}
+        className={`text-2xl sm:text-3xl md:text-5xl ${favorite === 'true' ? 'text-yellow-300' : 'dark:text-white'}`}
       >
         {favorite === 'true' ? <MdFavorite /> : <MdFavoriteBorder />}
       </button>
