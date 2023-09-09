@@ -10,8 +10,12 @@ export default function Root() {
   const handleCloseMenu = () => setToggle(false);
 
   return (
-      <>
-      <Header handleOpenMenu={handleOpenMenu} handleCloseMenu={handleCloseMenu} toggled={toggleMenu} />
+    <>
+      <Header
+        handleOpenMenu={handleOpenMenu}
+        handleCloseMenu={handleCloseMenu}
+        toggled={toggleMenu}
+      />
       <main className="relative w-full h-[calc(100vh-56px)] md:h-[calc(100vh-90px)] dark:bg-black sm:flex">
         <SideBar closeMenu={handleCloseMenu} toggled={toggleMenu} />
         <div className="hidden w-[1px] h-full bg-black/25  dark:bg-white/50 sm:block"></div>
@@ -19,6 +23,6 @@ export default function Root() {
           <Outlet />
         </section>
       </main>
-      </>
+    </>
   );
 }
