@@ -53,3 +53,10 @@ export async function multiDeleteContacts(id: string) {
   const updatedContacts = contacts.filter((contact) =>  !idArray.includes(`${contact.ID}`));
   return localStorage.setItem("contacts", JSON.stringify(updatedContacts));
 }
+
+// a function to get the favorite contacts
+export async function getFavorites() {
+  const contacts = await getContacts()
+  const favs = contacts.filter(contact => contact.favorite == 'true')
+  return favs;
+}

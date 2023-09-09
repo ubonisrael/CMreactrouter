@@ -42,22 +42,31 @@ const SideBar = ({
             onClick={closeMenu}
             className="w-full flex items-center text-xl gap-2 hover:bg-black/10 cursor-pointer p-1 rounded dark:hover:bg-slate-600"
           >
-            <MdFavorite />
-            <p>Favorites</p>
+            <NavLink
+              className="w-full flex items-center gap-2"
+              to={"/favorites"}
+            >
+              <MdFavorite />
+              <p>Favorites</p>
+            </NavLink>
           </li>
           <li
             onClick={closeMenu}
             className="w-full flex items-center text-xl gap-2 hover:bg-black/10 cursor-pointer p-1 rounded dark:hover:bg-slate-600"
           >
-            <MdAutoFixHigh />
-            <p>Merge and Fix</p>
+            <NavLink className="w-full flex items-center gap-2" to={"/merge"}>
+              <MdAutoFixHigh />
+              <p>Merge and Fix</p>
+            </NavLink>
           </li>
           <li
             onClick={closeMenu}
             className="w-full flex items-center text-xl gap-2 hover:bg-black/10 cursor-pointer p-1 rounded dark:hover:bg-slate-600"
           >
-            <AiOutlineDownload />
-            <p>Import</p>
+            <NavLink className="w-full flex items-center gap-2" to={"/import"}>
+              <AiOutlineDownload />
+              <p>Import</p>
+            </NavLink>
           </li>
         </ul>
       </nav>

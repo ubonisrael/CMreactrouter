@@ -1,10 +1,10 @@
-import { useLoaderData, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Contacts } from "../@types/app";
 import ContactCard from "./contact_card";
 import DeleteAlert from "./delete_alert";
+import EmptyList from "./empty_list";
 
-const ContactList = () => {
-  const { contacts } = useLoaderData() as { contacts: Contacts };
+const ContactList = ({contacts, type}: {contacts: Contacts, type: string}) => {
 
   const selectedContacts = contacts
     .filter((contact) => contact.selected == "true")
@@ -16,6 +16,7 @@ const ContactList = () => {
       aria-label="contacts list"
       className="relative w-full h-full overflow-y-scroll scrolllbar p-2 sm:p-3 md:p-4 dark:text-white bg-white dark:bg-slate-900"
     >
+      <h2 className="mb-2 sm:mb-3 md:mb-4 text-2xl uppercase font-bold">{type}s</h2>
       {contacts.length > 0 ? (
         <div className="w-full border border-black dark:border-white/50">
           {selectedLength > 0 ? (
@@ -42,10 +43,7 @@ const ContactList = () => {
           ))}
         </div>
       ) : (
-        <p className="text-base uppercase py-4">
-          you don't have any contact(s). Click on the create button to add new
-          contacts.
-        </p>
+        <EmptyList type={type} />
       )}
     </section>
   );
